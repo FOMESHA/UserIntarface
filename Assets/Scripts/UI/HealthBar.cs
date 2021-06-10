@@ -13,6 +13,7 @@ public class HealthBar : MonoBehaviour
 
     private Slider _slider;
     private float _elapsedTime;
+    private Coroutine _fillBarJob;
 
     private void Awake()
     {
@@ -28,9 +29,11 @@ public class HealthBar : MonoBehaviour
 
     public void OnChangeSliderValue(float currentHealth, float maxHealth)
     {
-        StopAllCoroutines();
+        if (_fillBarJob != null)
+            StopCoroutine(_fillBarJob);
+
         _healthText.text = currentHealth.ToString();
-        StartCoroutine(FillBar(currentHealth, maxHealth));
+        _fillBarJob = StartCoroutine(FillBar(currentHealth, maxHealth));
     }
 
     private IEnumerator FillBar(float currentHealth = 0, float maxHealth = 0)

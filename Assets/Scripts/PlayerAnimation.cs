@@ -15,15 +15,15 @@ public class PlayerAnimation : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.ChangeHealth += ChangeAnimation;
+        _player.ChangeHealth += OnChangeAnimation;
     }
 
     private void OnDestroy()
     {
-        _player.ChangeHealth -= ChangeAnimation;
+        _player.ChangeHealth -= OnChangeAnimation;
     }
 
-    private void ChangeAnimation(float currentHealth, float maxHealth)
+    private void OnChangeAnimation(float currentHealth, float maxHealth)
     {
         float normalizedValue =  currentHealth / maxHealth;
         _animator.Play("PlayerState", 0, normalizedValue);
