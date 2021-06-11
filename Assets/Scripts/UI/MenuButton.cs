@@ -19,12 +19,12 @@ public class MenuButton : MonoBehaviour
 
     private void OnEnable()
     {
-        _menuChanger.ChangeView += Deactivate;
+        _menuChanger.OnChangeView += Deactivate;
     }
 
     private void OnDisable()
     {
-        _menuChanger.ChangeView -= Deactivate;
+        _menuChanger.OnChangeView -= Deactivate;
         isActive = false;
     }
 

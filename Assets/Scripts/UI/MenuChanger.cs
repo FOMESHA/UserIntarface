@@ -8,11 +8,11 @@ public class MenuChanger : MonoBehaviour
     [SerializeField] Color _activeButtonColor;
     [SerializeField] Color _deactivateButtonColor;
 
-    public event UnityAction<Color> ChangeView;
+    public event UnityAction<Color> OnChangeView;
 
     public void ChangeMenuView(MenuButton activatingButton)
     {
-        ChangeView?.Invoke(_deactivateButtonColor);
+        OnChangeView?.Invoke(_deactivateButtonColor);
         activatingButton.Activate(_activeButtonColor);
     }
 

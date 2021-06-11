@@ -18,16 +18,16 @@ public class HealthBar : MonoBehaviour
     private void Awake()
     {
         _slider = GetComponent<Slider>();
-        _player.ChangeHealth += OnChangeSliderValue;
+        _player.OnChangeHealth += ChangeSliderValue;
     }
 
 
     private void OnDestroy()
     {
-        _player.ChangeHealth -= OnChangeSliderValue;
+        _player.OnChangeHealth -= ChangeSliderValue;
     }
 
-    public void OnChangeSliderValue(float currentHealth, float maxHealth)
+    public void ChangeSliderValue(float currentHealth, float maxHealth)
     {
         if (_fillBarJob != null)
             StopCoroutine(_fillBarJob);

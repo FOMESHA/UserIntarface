@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
     private float _currentHealth;
 
-    public event UnityAction<float, float> ChangeHealth;
+    public event UnityAction<float, float> OnChangeHealth;
 
     private void Awake()
     {
@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        ChangeHealth?.Invoke(_currentHealth, _maxHealth);
+        OnChangeHealth?.Invoke(_currentHealth, _maxHealth);
     }
 
     public void TakeDamage(int damage)
@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 
         if (_currentHealth < 0)
             _currentHealth = 0;
-        ChangeHealth?.Invoke(_currentHealth, _maxHealth);
+        OnChangeHealth?.Invoke(_currentHealth, _maxHealth);
     }
 
     public void GetHealth(int health)
@@ -36,6 +36,6 @@ public class Player : MonoBehaviour
 
         if (_currentHealth > _maxHealth)
             _currentHealth = _maxHealth;
-        ChangeHealth?.Invoke(_currentHealth, _maxHealth);
+        OnChangeHealth?.Invoke(_currentHealth, _maxHealth);
     }
 }
